@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { BrowserProvider, parseEther, Contract } from 'ethers';  // Ensure BrowserProvider is imported
-import { contractABI } from '../abi/contractABI';
+import { contractABI } from './contractabi';
 
 export default function CreateProject() {
   const [title, setTitle] = useState('');
