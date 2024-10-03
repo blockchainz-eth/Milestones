@@ -12,6 +12,7 @@ export default function CreateProject() {
 
   // Retrieve the contract address from environment variables
   const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+  const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
   // Ensure the contract address is defined
   if (!contractAddress) {
