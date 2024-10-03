@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { BrowserProvider, Contract, formatEther } from 'ethers';  // Use BrowserProvider and Contract for ethers v6
-import { contractABI } from '/Users/adrianrochert/Desktop/crowdfunding-interface/crowdfunding-interface4/app/abi/ContractABI.js';  // Ensure this path is correct
+import { contractABI } from '../abi/ContractABI.js';
 
 export default function SeeProjects() {
   const [projects, setProjects] = useState([]);

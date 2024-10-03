@@ -5,6 +5,8 @@ import { ethers } from 'ethers';
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';  // Import useEffect
+import { contractABI } from '../abi/ContractABI.js';
+
 
 export default function Home() {
   const router = useRouter();

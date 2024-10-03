@@ -1,8 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { BrowserProvider, parseEther, Contract } from 'ethers';  // Ensure BrowserProvider is imported
-import { contractABI } from '/Users/adrianrochert/Desktop/crowdfunding-interface/crowdfunding-interface4/app/abi/ContractABI.js';  
-
+import { contractABI } from '../abi/ContractABI.js';
 export default function CreateProject() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
