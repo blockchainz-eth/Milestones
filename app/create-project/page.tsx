@@ -1,7 +1,8 @@
 "use client";
 import { useState } from 'react';
 import { BrowserProvider, parseEther, Contract } from 'ethers';  // Ensure BrowserProvider is imported
-import { contractABI } from '../abi/ContractABI.js';
+import { contractABI } from '../abi/ContractABI';
+
 export default function CreateProject() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -9,15 +10,24 @@ export default function CreateProject() {
   const [goalAmount, setGoalAmount] = useState('');
   const [duration, setDuration] = useState('');
 
+  // Retrieve the contract address from environment variables
+  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+
+  // Ensure the contract address is defined
+  if (!contractAddress) {
+    throw new Error("Contract address is not defined in environment variables.");
+  }
+
   const launchProject = async () => {
     if (typeof window !== "undefined" && window.ethereum) {
       try {
         const provider = new BrowserProvider(window.ethereum);  // Use BrowserProvider for ethers v6
         const signer = await provider.getSigner();
 
-        const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
-        const contract = new Contract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS, contractABI, signer);  // Initialize contract
+        // Initialize contract with the retrieved contract address
+        const contract = new Contract(contractAddress, contractABI, signer); 
 
+        // Call the contract's createProject function with user inputs
         const transaction = await contract.createProject(
           title,
           description,
@@ -25,6 +35,8 @@ export default function CreateProject() {
           duration,
           imageURL
         );
+
+        // Wait for the transaction to be confirmed
         await transaction.wait();
         alert('Project created successfully!');
       } catch (error) {

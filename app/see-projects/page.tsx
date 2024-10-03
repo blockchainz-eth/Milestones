@@ -2,12 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import { BrowserProvider, Contract, formatEther } from 'ethers';  // Use BrowserProvider and Contract for ethers v6
-import { contractABI } from '../abi/ContractABI.js';
+import { contractABI } from '../abi/ContractABI';
 
 export default function SeeProjects() {
   const [projects, setProjects] = useState([]);
   const [walletConnected, setWalletConnected] = useState(false);
   const [signer, setSigner] = useState(null);
+
+  // Retrieve the contract address from environment variables
+  const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+
+  // Ensure the contract address is defined
+  if (!contractAddress) {
+    throw new Error("Contract address is not defined in environment variables.");
+  }
 
   // Function to connect wallet
   const connectWallet = async () => {
@@ -15,7 +23,7 @@ export default function SeeProjects() {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
         const provider = new BrowserProvider(window.ethereum);
-        const signer = provider.getSigner();
+        const signer = await provider.getSigner();
         setSigner(signer);
         setWalletConnected(true);
         console.log("Wallet connected:", signer);
@@ -31,7 +39,7 @@ export default function SeeProjects() {
     const fetchProjects = async () => {
       try {
         const provider = new BrowserProvider(window.ethereum);
-        const contract = new Contract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS, contractABI, provider);
+        const contract = new Contract(contractAddress, contractABI, provider);
 
         const projectList = [];
         let index = 0;
@@ -62,7 +70,7 @@ export default function SeeProjects() {
     };
 
     fetchProjects();
-  }, []);
+  }, [contractAddress]);  // Use contractAddress as a dependency
 
   // Function to contribute to a project
   const contributeToProject = async (projectId, amountInEth) => {
@@ -72,8 +80,8 @@ export default function SeeProjects() {
     }
 
     try {
-      const contract = new Contract(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS, contractABI, signer);
-  
+      const contract = new Contract(contractAddress, contractABI, signer);
+
       const tx = await contract.contribute(projectId, {
         value: ethers.parseEther(amountInEth),  // Contribution amount in ETH
       });
@@ -84,7 +92,7 @@ export default function SeeProjects() {
       alert('There was an issue with your contribution.');
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <h1 className="text-3xl font-bold mb-6">Ongoing Projects</h1>
