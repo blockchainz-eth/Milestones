@@ -3,11 +3,13 @@
 import { useEffect } from 'react';
 //import { ethers } from 'ethers';  // Ensure ethers is used
 //import { contractABI } from './abi/contractABI';  // Ensure contractABI is used
-import { useRouter } from 'next/navigation';  // Import useRouter for navigation
+//import { useRouter } from 'next/navigation';  // Import useRouter for navigation
+import { useRouter } from 'next/router';
+const router = useRouter();
 
 export default function Home() {
   const router = useRouter();
-
+//comment
   useEffect(() => {
     const connectMetaMask = async () => {
       if (window.ethereum) {
@@ -46,32 +48,39 @@ export default function Home() {
   // The empty dependency array ensures it runs only once when the component mounts
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-      <h1 className="text-4xl font-bold mb-4">Milestones Crowdfunding Platform</h1>
+    import Image from 'next/image';  // Make sure Image is imported from Next.js
 
-      {/* Logo */}
-      <img 
-       <Image src="https://i.imgur.com/SrBEbAv.jpeg"
-        alt="description"
-        className="mb-8 w-96 h-auto" 
-        style={{ maxWidth: '100%', height: 'auto' }}  // Ensures proper scaling of the image
-      />
-
-      {/* Buttons */}
-      <div className="flex space-x-4">
-        <button 
-          className="bg-black text-white border-white border-2 py-2 px-4" 
-          onClick={() => router.push('/create-project')}
-        >
-          Create Project
-        </button>
-        <button 
-          className="bg-black text-white border-white border-2 py-2 px-4" 
-          onClick={() => router.push('/see-projects')}
-        >
-          See Projects
-        </button>
-      </div>
-    </div>
-  );
-}
+    export default function Home() {
+      return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+          <h1 className="text-4xl font-bold mb-4">Milestones Crowdfunding Platform</h1>
+          
+          {/* Logo */}
+          <Image 
+            src="https://i.imgur.com/SrBEbAv.jpeg"
+            alt="Platform Logo"
+            width={400}  // Specify width (change as needed)
+            height={300}  // Specify height (change as needed)
+            className="mb-8 w-96 h-auto" 
+            style={{ maxWidth: '100%', height: 'auto' }}  // Ensures proper scaling of the image
+          />
+    
+          {/* Buttons */}
+          <div className="flex space-x-4">
+            <button 
+              className="bg-black text-white border-white border-2 py-2 px-4" 
+              onClick={() => router.push('/create-project')}
+            >
+              Create Project
+            </button>
+            <button 
+              className="bg-black text-white border-white border-2 py-2 px-4" 
+              onClick={() => router.push('/see-projects')}
+            >
+              See Projects
+            </button>
+          </div>
+        </div>
+      );
+    }
+    
