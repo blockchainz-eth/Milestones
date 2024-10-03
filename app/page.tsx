@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { ethers } from 'ethers';  // Ensure ethers is used
-import { contractABI } from './abi/ContractABI';  // Ensure contractABI is used
+import { contractABI } from './abi/contractABI';  // Ensure contractABI is used
 import { useRouter } from 'next/navigation';  // Import useRouter for navigation
 
 export default function Home() {

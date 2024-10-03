@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { BrowserProvider, Contract, formatEther } from 'ethers';  // Use BrowserProvider and Contract for ethers v6
-import { contractABI } from '../abi/ContractABI';
+import { contractABI } from '../abi/contractABI';
 
 export default function SeeProjects() {
   const [projects, setProjects] = useState([]);
