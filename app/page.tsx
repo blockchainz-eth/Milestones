@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import Image from 'next/image';  // Correct placement: at the top of the file
+import Image from 'next/image';  // Import at the top
 import { useRouter } from 'next/router';  // Import useRouter for navigation
 
 export default function Home() {
