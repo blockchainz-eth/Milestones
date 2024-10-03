@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import Image from 'next/image';  // This should be at the top
+import Image from 'next/image';  // Correct placement: at the top of the file
 import { useRouter } from 'next/router';  // Import useRouter for navigation
 
 export default function Home() {
@@ -41,7 +41,6 @@ export default function Home() {
     connectMetaMask();  // Call the function inside useEffect
   }, []);
 
-  // The return section where your JSX is rendered
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
       <h1 className="text-4xl font-bold mb-4">Milestones Crowdfunding Platform</h1>
