@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from 'react';
-import { ethers } from 'ethers';  // Ensure ethers is used
-import { contractABI } from './abi/contractABI';  // Ensure contractABI is used
+//import { ethers } from 'ethers';  // Ensure ethers is used
+//import { contractABI } from './abi/contractABI';  // Ensure contractABI is used
 import { useRouter } from 'next/navigation';  // Import useRouter for navigation
 
 export default function Home() {
@@ -51,8 +51,8 @@ export default function Home() {
 
       {/* Logo */}
       <img 
-        src="https://i.imgur.com/SrBEbAv.jpeg"  // Replace with your image URL
-        alt="Platform Logo" 
+       <Image src="https://i.imgur.com/SrBEbAv.jpeg"
+        alt="description"
         className="mb-8 w-96 h-auto" 
         style={{ maxWidth: '100%', height: 'auto' }}  // Ensures proper scaling of the image
       />
